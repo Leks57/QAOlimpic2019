@@ -47,4 +47,8 @@ public class Student {
         this.marks = marks;
     }
 
+    public String getFullName() {
+        return name + " " + middleName + " " + surname;
+    }
+
 }

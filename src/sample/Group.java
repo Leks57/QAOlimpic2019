@@ -4,6 +4,7 @@ import java.util.List;
 public class Group {
     private static volatile Group instance;
     private List<Student> students;
+    private List<User> users;
     private List<Mark> marks;
 
     public static Group getInstance() {
@@ -43,5 +44,13 @@ public class Group {
         for (Mark mark:marks) {
             System.out.println("Mark [value=" + mark.getValue() + ", date=" + mark.getDate() + ", student=" + mark.getStudent() + "]");
         }
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

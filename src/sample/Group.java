@@ -4,6 +4,7 @@ import java.util.List;
 public class Group {
     private static volatile Group instance;
     private List<Student> students;
+    private List<Mark> marks;
 
     public static Group getInstance() {
         Group localInstance = instance;
@@ -28,5 +29,19 @@ public class Group {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public List<Mark> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(List<Mark> marks) {
+        this.marks = marks;
+    }
+
+    public void printMarks() {
+        for (Mark mark:marks) {
+            System.out.println("Mark [value=" + mark.getValue() + ", date=" + mark.getDate() + ", student=" + mark.getStudent() + "]");
+        }
     }
 }

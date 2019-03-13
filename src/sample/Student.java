@@ -1,13 +1,13 @@
 package sample;
+
 import java.util.List;
-import java.util.Map;
 
 
 public class Student {
     private String name;
     private String surname;
     private String middleName;
-    private Map<Subject, List<Mark>> marks;
+    private List<Mark> marks;
 
     public Student (String surname, String name, String middleName) {
         this.setSurname(surname);
@@ -39,11 +39,11 @@ public class Student {
         this.middleName = middleName;
     }
 
-    public Map<Subject, List<Mark>> getMarks() {
+    public List<Mark> getMarks() {
         return marks;
     }
 
-    public void setMarks(Map<Subject, List<Mark>> marks) {
+    public void setMarks(List<Mark> marks) {
         this.marks = marks;
     }
 

@@ -1,25 +1,15 @@
 package sample;
-import java.util.Date;
 
 public class Mark {
 
     private int value;
-    private Date date;
-    private Student student;
-    private Subject subject;
+    private String date;
+    private String student;
 
-    public Mark(int value, Date date, Student student, Subject subject) {
+    public Mark(int value, String date, String student) {
         this.value = value;
         this.date = date;
         this.student = student;
-        this.subject = subject;
-    }
-
-    public Mark(int value, Student student, Subject subject) {
-        this.value = value;
-        this.date = new Date();
-        this.student = student;
-        this.subject = subject;
     }
 
     public Integer getValue() {
@@ -30,27 +20,19 @@ public class Mark {
         this.value = value;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Student getStudent() {
+    public String getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(String student) {
         this.student = student;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
     }
 }

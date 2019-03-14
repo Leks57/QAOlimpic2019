@@ -18,11 +18,11 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
 
-        User user1 = new User("User1");
-        User user2 = new User("User2");
+        User admin = new Admin();
+        User teacher = new Teacher();
         List<User> users = new ArrayList<User>();
-        users.add(user1);
-        users.add(user2);
+        users.add(admin);
+        users.add(teacher);
         Group.getInstance().setUsers(users);
 
         CSVDataParser.importCSV("marks.csv");

@@ -6,6 +6,7 @@ public class Group {
     private List<Student> students;
     private List<User> users;
     private List<Mark> marks;
+    private User currentUser;
 
     public static Group getInstance() {
         Group localInstance = instance;
@@ -52,5 +53,13 @@ public class Group {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 }

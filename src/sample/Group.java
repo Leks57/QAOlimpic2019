@@ -47,6 +47,13 @@ public class Group {
         }
     }
 
+    public void printUsers() {
+        System.out.println("The list of users:");
+        for(User user:users) {
+            System.out.println("Username: " + user.getUserName() + ", pass: " + user.getPass() + ", student: " + user.isStudentType());
+        }
+    }
+
     public List<User> getUsers() {
         return users;
     }

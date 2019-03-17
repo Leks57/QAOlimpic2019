@@ -6,6 +6,7 @@ private String pass;
 private boolean canCreateStudents = false;
 private boolean canViewAllMarks = false;
 private boolean canEditMarks = false;
+private boolean studentType = false;
 
 public User(String userName, String pass){
     this.userName = userName;
@@ -50,5 +51,13 @@ public User(String userName, String pass){
 
     public void setCanEditMarks(boolean canEditMarks) {
         this.canEditMarks = canEditMarks;
+    }
+
+    public boolean isStudentType() {
+        return studentType;
+    }
+
+    public void setStudentType(boolean studentType) {
+        this.studentType = studentType;
     }
 }

@@ -11,6 +11,7 @@ public class Student extends User {
 
     public Student (String userName, String pass, String surname, String name, String middleName) {
         super(userName, pass);
+        setStudentType(true);
         this.setSurname(surname);
         this.setName(name);
         this.setMiddleName(middleName);

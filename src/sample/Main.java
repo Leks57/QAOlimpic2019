@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main extends Application {
 
     @Override
@@ -18,16 +15,17 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 700, 400));
         primaryStage.show();
 
+        CSVDataParser.importStudentsFromCSV("users.csv");
         User admin = new Admin();
+        Group.getInstance().getUsers().add(admin);
         User teacher = new Teacher();
-        List<User> users = new ArrayList<User>();
-        users.add(admin);
-        users.add(teacher);
-        Group.getInstance().setUsers(users);
+        Group.getInstance().getUsers().add(teacher);
 
-        CSVDataParser.importCSV("marks.csv");
+        CSVDataParser.importMarksFromCSV("marks.csv");
+        Group.getInstance().printUsers();
         Group.getInstance().printMarks();
         CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(),"marks.csv");
+        CSVDataParser.exportStudentsToCSV("users.csv");
     }
 
     public static void main(String[] args) {

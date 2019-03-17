@@ -24,6 +24,7 @@ public class Main extends Application {
         CSVDataParser.importMarksFromCSV("marks.csv");
         Group.getInstance().printUsers();
         Group.getInstance().printMarks();
+        Controller.getMarksData().addAll(Group.getInstance().getMarks());
         CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(),"marks.csv");
         CSVDataParser.exportStudentsToCSV("users.csv");
     }

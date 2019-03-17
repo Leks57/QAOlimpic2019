@@ -44,7 +44,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </AnchorPane>
-      <AnchorPane layoutX="108.0" prefHeight="400.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="110.0">
+      <AnchorPane layoutX="108.0" prefHeight="400.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -53,9 +53,18 @@
          </effect>
          <children>
             <Pane fx:id="pnl_green" layoutX="2.0" layoutY="-1.0" prefHeight="223.0" prefWidth="224.0" style="-fx-background-color: #7FFF00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="pnl_orange" layoutX="163.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF7F50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="pnl_coral" layoutX="295.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="pnl_yellow" layoutX="20.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD700;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="pnl_orange" layoutX="163.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF7F50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tableMarks" layoutX="13.0" layoutY="60.0" prefHeight="312.0" prefWidth="489.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Student" fx:id="userColumn"/>
+                      <TableColumn prefWidth="75.0" text="Date" fx:id="dateColumn"/>
+                       <TableColumn prefWidth="75.0" text="Value" fx:id="markColumn"/>
+                    </columns>
+                  </TableView>
+               </children></Pane>
          </children>
       </AnchorPane>
    </children>

@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.text.Font?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <AnchorPane layoutX="-2.0" maxWidth="110.0" prefHeight="400.0" prefWidth="110.0" style="-fx-background-color: #48D1CC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -52,19 +42,14 @@
             <DropShadow />
          </effect>
          <children>
-            <Pane fx:id="pnl_green" layoutX="2.0" layoutY="-1.0" prefHeight="223.0" prefWidth="224.0" style="-fx-background-color: #7FFF00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="pnl_coral" layoutX="295.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="pnl_yellow" layoutX="20.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD700;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="pnl_orange" layoutX="163.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF7F50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="pnl_green" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7FFF00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_coral" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_yellow" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD700;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_orange" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF7F50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="tableMarks" layoutX="13.0" layoutY="60.0" prefHeight="312.0" prefWidth="489.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="Student" fx:id="userColumn"/>
-                      <TableColumn prefWidth="75.0" text="Date" fx:id="dateColumn"/>
-                       <TableColumn prefWidth="75.0" text="Value" fx:id="markColumn"/>
-                    </columns>
+                  <TableView fx:id="tableMarks" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="570.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                   </TableView>
-               </children></Pane>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

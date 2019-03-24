@@ -43,7 +43,7 @@ public class Group {
 
     public void printMarks() {
         for (Mark mark:marks) {
-            System.out.println("Mark [value=" + mark.getValue() + ", date=" + mark.getDate() + ", student=" + mark.getStudent() + "]");
+            System.out.println("Mark [value=" + mark.getValue() + ", date=" + mark.getDate() + ", student=" + mark.getStudentName() + "]");
         }
     }
 

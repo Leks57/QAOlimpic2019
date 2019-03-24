@@ -1,13 +1,13 @@
 package sample;
 
-import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class Student extends User {
     private String name;
     private String surname;
     private String middleName;
-    private List<Mark> marks;
+    private Map<String, String> marks = new HashMap<>();
 
     public Student (String userName, String pass, String surname, String name, String middleName) {
         super(userName, pass);
@@ -41,16 +41,22 @@ public class Student extends User {
         this.middleName = middleName;
     }
 
-    public List<Mark> getMarks() {
+    public String getFullName() {
+        return surname + " " + name + " " + middleName;
+    }
+
+    public Map<String, String> getMarks() {
         return marks;
     }
 
-    public void setMarks(List<Mark> marks) {
+    public void setMarks(Map<String, String> marks) {
         this.marks = marks;
     }
 
-    public String getFullName() {
-        return name + " " + middleName + " " + surname;
+    public void printMarks() {
+        System.out.println("Marks of student '" + getFullName() + "':");
+        for(Map.Entry<String, String> entry : marks.entrySet()) {
+            System.out.println("Date: " + entry.getKey() + ", Value: " + entry.getValue());
+        }
     }
-
 }

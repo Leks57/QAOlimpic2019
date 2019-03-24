@@ -4,12 +4,12 @@ public class Mark {
 
     private int value;
     private String date;
-    private String student;
+    private String studentName;
 
-    public Mark(int value, String date, String student) {
+    public Mark(int value, String date, String studentName) {
         this.value = value;
         this.date = date;
-        this.student = student;
+        this.studentName = studentName;
     }
 
     public Integer getValue() {
@@ -28,11 +28,11 @@ public class Mark {
         this.date = date;
     }
 
-    public String getStudent() {
-        return student;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent(String student) {
-        this.student = student;
+    public void setStudent(String studentName) {
+        this.studentName = studentName;
     }
 }

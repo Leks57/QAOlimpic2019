@@ -22,6 +22,19 @@ public class CSVDataParser {
                 marks.add(mark);
             }
             Group.getInstance().setMarks(marks);
+
+            //Fill data of each student object with his marks
+            for (Student student:Group.getInstance().getStudents()) {
+                for (Mark mark:Group.getInstance().getMarks()) {
+                    if (student.getFullName().equals(mark.getStudentName())) {
+                        student.getMarks().put(mark.getDate(), mark.getValue().toString());
+                    }
+                }
+            }
+
+            for (Student student:Group.getInstance().getStudents()) {
+                student.printMarks();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,12 +45,15 @@ public class CSVDataParser {
         try {
             reader = new CSVReader(new FileReader(csvFile));
             String[] line;
-            List<User> students = new ArrayList<User>();
+            List<User> studentsAsUsers = new ArrayList<User>();
+            List<Student> students = new ArrayList<Student>();
             while ((line = reader.readNext()) != null) {
                 Student student = new Student(line[0], line[1], line[2], line[3], line[4]);
+                studentsAsUsers.add(student);
                 students.add(student);
             }
-            Group.getInstance().setUsers(students);
+            Group.getInstance().setUsers(studentsAsUsers);
+            Group.getInstance().setStudents(students);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,7 +63,7 @@ public class CSVDataParser {
         try {
             CSVWriter writer = new CSVWriter(new FileWriter(csvFile));
             for (Mark mark:marks) {
-                String [] record = {mark.getValue().toString(), mark.getDate(), mark.getStudent()};
+                String [] record = {mark.getValue().toString(), mark.getDate(), mark.getStudentName()};
                 writer.writeNext(record);
             }
             writer.close();

@@ -16,10 +16,7 @@ import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Controller {
 
@@ -34,39 +31,10 @@ public class Controller {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        columnNames.add("01.03.2019");
-        columnNames.add("02.03.2019");
-        columnNames.add("03.03.2019");
-        columnNames.add("04.03.2019");
-        columnNames.add("05.03.2019");
-        columnNames.add("06.03.2019");
-        columnNames.add("07.03.2019");
-        columnNames.add("08.03.2019");
-        columnNames.add("09.03.2019");
-        columnNames.add("10.03.2019");
-
-        columnNames.add("01.04.2019");
-        columnNames.add("02.04.2019");
-        columnNames.add("03.04.2019");
-        columnNames.add("04.04.2019");
-        columnNames.add("05.04.2019");
-        columnNames.add("06.04.2019");
-        columnNames.add("07.04.2019");
-        columnNames.add("08.04.2019");
-        columnNames.add("09.04.2019");
-        columnNames.add("10.04.2019");
-
-        columnNames.add("01.05.2019");
-        columnNames.add("02.05.2019");
-        columnNames.add("03.05.2019");
-        columnNames.add("04.05.2019");
-        columnNames.add("05.05.2019");
-        columnNames.add("06.05.2019");
-        columnNames.add("07.05.2019");
-        columnNames.add("08.05.2019");
-        columnNames.add("09.05.2019");
-        columnNames.add("10.05.2019");
-
+        String[] arrayOfDays = new String[] {"01.03.2019", "02.03.2019", "03.03.2019", "04.03.2019", "05.03.2019", "06.03.2019", "07.03.2019", "08.03.2019", "09.03.2019", "10.03.2019",
+                "01.04.2019", "02.04.2019", "03.04.2019", "04.04.2019", "05.04.2019", "06.04.2019", "07.04.2019", "08.04.2019", "09.04.2019", "10.04.2019",
+                "01.05.2019", "02.05.2019", "03.05.2019", "04.05.2019", "05.05.2019", "06.05.2019", "07.05.2019", "08.05.2019", "09.05.2019", "10.05.2019"};
+        columnNames = Arrays.asList(arrayOfDays);
 
         List<TableColumn<Map, String>> listOfColumns = new ArrayList<>();
 

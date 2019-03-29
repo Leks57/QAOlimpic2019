@@ -95,6 +95,19 @@ public class Controller {
             tableColumn.setCellFactory(cellFactoryForMap);
         }
 
+        //Possibility to edit columns
+        for (TableColumn tableColumn:secondMonth.getColumns()) {
+            tableColumn.setCellFactory(cellFactoryForMap);
+        }
+
+        secondMonth.getColumns().get(1).setOnEditCommit( t -> {
+            int index = ((TableColumn.CellEditEvent<Map, String>) t).getTablePosition().getRow();
+            String date = ((TableColumn.CellEditEvent<Map, String>) t).getTableColumn().getText();
+            Map map = ((TableColumn.CellEditEvent<Map, String>) t).getTableView().getItems().get(index);
+            map.put("06.04.2019",((TableColumn.CellEditEvent<Map, String>) t).getNewValue());
+            ((TableColumn.CellEditEvent<Map, String>) t).getTableView().refresh();
+        });
+
         tableMarks.getColumns().setAll(listOfColumns);
     }
 

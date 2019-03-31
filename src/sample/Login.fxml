@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+      <AnchorPane layoutY="31.0" prefHeight="369.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <TextField fx:id="login" layoutX="253.0" layoutY="107.0" prefHeight="33.0" prefWidth="268.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="179.0" />
+            <TextField fx:id="password" layoutX="253.0" layoutY="175.0" prefHeight="33.0" prefWidth="268.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="179.0" />
+            <Label layoutX="109.0" layoutY="107.0" prefHeight="33.0" prefWidth="81.0" text="Login" textAlignment="RIGHT" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="510.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="109.0" layoutY="175.0" prefHeight="33.0" prefWidth="91.0" text="Password" textAlignment="RIGHT" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="500.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_login" layoutX="329.0" layoutY="245.0" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="117.0" text="Login" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="245.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="output" layoutX="169.0" layoutY="325.0" prefHeight="17.0" prefWidth="321.0" text="Label" textAlignment="CENTER" textOverrun="CLIP" visible="false">
+               <font>
+                  <Font name="AdobeHeitiStd-Regular" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="24.0" prefWidth="625.0">
+         <children>
+            <Button layoutX="109.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="94.0" text="report a bug" />
+            <Label layoutX="258.0" layoutY="5.0" prefHeight="17.0" prefWidth="359.0" text="Logged as:" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

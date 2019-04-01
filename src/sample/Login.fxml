@@ -41,8 +41,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="24.0" prefWidth="625.0">
          <children>
-            <Button layoutX="109.0" layoutY="2.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="94.0" text="report a bug" />
-            <Label layoutX="258.0" layoutY="5.0" prefHeight="17.0" prefWidth="359.0" text="Logged as:" />
+            <Button layoutX="8.0" layoutY="3.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="94.0" text="report a bug" />
+            <Label layoutX="288.0" layoutY="5.0" prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
          </children>
       </AnchorPane>
    </children>

@@ -1,9 +1,13 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -32,5 +36,25 @@ public class LoginController {
         }
         output.setText("Wrong login or password!");
         output.setVisible(true);
+    }
+
+
+    @FXML
+    private void handleReportBug(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(Main.getPrimaryStage());
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Describe the bug:"));
+        TextArea textArea = new TextArea();
+        textArea.setPrefSize(150, 150);
+        Button createReport = new Button("Create report");
+        Button cancelReport = new Button("Cancel");
+        dialogVbox.getChildren().add(textArea);
+        dialogVbox.getChildren().add(createReport);
+        dialogVbox.getChildren().add(cancelReport);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 }

@@ -4,9 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class AdminController {
 
@@ -49,7 +54,7 @@ public class AdminController {
     @FXML
     private AnchorPane pnl_orange, pnl_coral, pnl_yellow, pnl_green;
     @FXML
-    private Button btn_journal, btn_docs, btn_classes, btn_planing, logOut, exit;
+    private Button btn_journal, btn_docs, btn_classes, btn_planing, logOut, reportBug, exit;
 
     @FXML
     private Button addStudent;
@@ -84,6 +89,25 @@ public class AdminController {
             Group.getInstance().getStudents().add(student);
             usersData.add(student);
         }
+    }
+
+    @FXML
+    private void handleReportBug(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(Main.getPrimaryStage());
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Describe the bug:"));
+        TextArea textArea = new TextArea();
+        textArea.setPrefSize(150, 150);
+        Button createReport = new Button("Create report");
+        Button cancelReport = new Button("Cancel");
+        dialogVbox.getChildren().add(textArea);
+        dialogVbox.getChildren().add(createReport);
+        dialogVbox.getChildren().add(cancelReport);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     private void initData() {

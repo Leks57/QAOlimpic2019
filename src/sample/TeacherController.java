@@ -4,10 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
@@ -165,6 +170,21 @@ public class TeacherController {
         } else if (event.getSource() == logOut) {
             Main.changeScene(getClass().getResource("Login.fxml"));
         }
+    }
+
+    @FXML
+    private void handleReportBug(ActionEvent event) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(Main.getPrimaryStage());
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Describe the bug:"));
+        TextArea textArea = new TextArea();
+        textArea.setPrefSize(150, 150);
+        dialogVbox.getChildren().add(textArea);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
     }
 
     private ObservableList<Map> generateDataInMap() {

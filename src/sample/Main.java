@@ -11,6 +11,14 @@ import java.net.URL;
 
 public class Main extends Application {
 
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        Main.primaryStage = primaryStage;
+    }
+
     private static Stage primaryStage;
 
     @Override

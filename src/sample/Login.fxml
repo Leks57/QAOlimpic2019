@@ -16,7 +16,7 @@
          </effect>
          <children>
             <TextField fx:id="login" layoutX="253.0" layoutY="107.0" prefHeight="33.0" prefWidth="268.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="179.0" />
-            <TextField fx:id="password" layoutX="253.0" layoutY="175.0" prefHeight="33.0" prefWidth="268.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="179.0" />
+            <PasswordField fx:id="password" layoutX="253.0" layoutY="175.0" prefHeight="33.0" prefWidth="268.0" AnchorPane.leftAnchor="253.0" AnchorPane.rightAnchor="179.0" />
             <Label layoutX="109.0" layoutY="107.0" prefHeight="33.0" prefWidth="81.0" text="Login" textAlignment="RIGHT" AnchorPane.leftAnchor="109.0" AnchorPane.rightAnchor="510.0">
                <font>
                   <Font size="18.0" />

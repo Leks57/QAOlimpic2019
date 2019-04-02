@@ -2,12 +2,16 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
 
     @FXML
-    private TextField login, password;
+    private TextField login;
+
+    @FXML
+    private PasswordField password;
 
     @FXML
     private Label output;
@@ -18,7 +22,11 @@ public class LoginController {
             if (login.getText().equals(user.getUserName()) && password.getText().equals(user.getPass())) {
                 output.setText("Login successful");
                 Group.getInstance().setCurrentUser(user);
-                Main.changeScene(getClass().getResource("teacher.fxml"));
+                if (login.getText().equals("admin")) {
+                    Main.changeScene(getClass().getResource("Admin.fxml"));
+                } else if (login.getText().equals("teacher")) {
+                    Main.changeScene(getClass().getResource("Teacher.fxml"));
+                }
                 return;
             }
         }

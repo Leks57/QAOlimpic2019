@@ -6,56 +6,71 @@ import au.com.bytecode.opencsv.CSVWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CSVDataParser {
 
-    public static void importMarksFromCSV(String csvFile) {
-        CSVReader reader;
-        try {
-            reader = new CSVReader(new FileReader(csvFile));
-            String[] line;
-            List<Mark> marks = new ArrayList<Mark>();
-            while ((line = reader.readNext()) != null) {
-                Mark mark = new Mark(Integer.parseInt(line[0]), line[1], line[2]);
-                marks.add(mark);
-            }
-            Group.getInstance().setMarks(marks);
+    public static void importMarksFromCSV(String csvFile) throws Exception {
 
-            //Fill data of each student object with his marks
-            for (Student student:Group.getInstance().getStudents()) {
-                for (Mark mark:Group.getInstance().getMarks()) {
-                    if (student.getFullName().equals(mark.getStudentName())) {
-                        student.getMarks().put(mark.getDate(), mark.getValue().toString());
+        Path path = Paths.get(csvFile);
+        if (Files.exists(path)) {
+            CSVReader reader;
+            try {
+                reader = new CSVReader(new FileReader(csvFile));
+                String[] line;
+                List<Mark> marks = new ArrayList<Mark>();
+                while ((line = reader.readNext()) != null) {
+                    Mark mark = new Mark(Integer.parseInt(line[0]), line[1], line[2]);
+                    marks.add(mark);
+                }
+                Group.getInstance().setMarks(marks);
+
+                //Fill data of each student object with his marks
+                for (Student student : Group.getInstance().getStudents()) {
+                    for (Mark mark : Group.getInstance().getMarks()) {
+                        if (student.getFullName().equals(mark.getStudentName())) {
+                            student.getMarks().put(mark.getDate(), mark.getValue().toString());
+                        }
                     }
                 }
-            }
 
-            for (Student student:Group.getInstance().getStudents()) {
-                student.printMarks();
+//                for (Student student : Group.getInstance().getStudents()) {
+//                    student.printMarks();
+//                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            throw new Exception("File with marks doesn't exist!");
         }
     }
 
-    public static void importStudentsFromCSV(String csvFile) {
-        CSVReader reader;
-        try {
-            reader = new CSVReader(new FileReader(csvFile));
-            String[] line;
-            List<User> studentsAsUsers = new ArrayList<User>();
-            List<Student> students = new ArrayList<Student>();
-            while ((line = reader.readNext()) != null) {
-                Student student = new Student(line[0], line[1], line[2], line[3], line[4]);
-                studentsAsUsers.add(student);
-                students.add(student);
+    public static void importStudentsFromCSV(String csvFile) throws Exception {
+
+        Path path = Paths.get(csvFile);
+        if (Files.exists(path)) {
+            CSVReader reader;
+            try {
+                reader = new CSVReader(new FileReader(csvFile));
+                String[] line;
+                List<User> studentsAsUsers = new ArrayList<User>();
+                List<Student> students = new ArrayList<Student>();
+                while ((line = reader.readNext()) != null) {
+                    Student student = new Student(line[0], line[1], line[2], line[3], line[4]);
+                    studentsAsUsers.add(student);
+                    students.add(student);
+                }
+                Group.getInstance().setUsers(studentsAsUsers);
+                Group.getInstance().setStudents(students);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            Group.getInstance().setUsers(studentsAsUsers);
-            Group.getInstance().setStudents(students);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            throw new Exception("File with students doesn't exist!");
         }
     }
 

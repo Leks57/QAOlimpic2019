@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class teacherController {
+public class TeacherController {
 
     public static List<String> columnNames = new ArrayList<>();
 
@@ -163,7 +163,7 @@ public class teacherController {
         } else if (event.getSource() == btn_planing) {
             pnl_green.toFront();
         } else if (event.getSource() == logOut) {
-            Main.changeScene(getClass().getResource("login.fxml"));
+            Main.changeScene(getClass().getResource("Login.fxml"));
         }
     }
 

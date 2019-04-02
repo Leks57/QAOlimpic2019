@@ -37,7 +37,7 @@ public class Main extends Application {
 
 //        Group.getInstance().printUsers();
 //        Group.getInstance().printMarks();
-//        teacherController.getMarksData().addAll(Group.getInstance().getMarks());
+//        TeacherController.getMarksData().addAll(Group.getInstance().getMarks());
 //        CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(),"marks.csv");
 //        CSVDataParser.exportStudentsToCSV("users.csv");
     }

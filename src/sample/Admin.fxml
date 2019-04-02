@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AdminController">
+   <children>
+      <AnchorPane layoutX="-2.0" layoutY="27.0" maxWidth="110.0" prefHeight="373.0" prefWidth="110.0" style="-fx-background-color: #48D1CC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="27.0">
+         <children>
+            <Button fx:id="btn_journal" layoutX="1.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Пользователи" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_docs" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Документы" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_classes" layoutX="1.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Классы и&#10;предметы" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_planing" layoutX="1.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Планирование&#10;уроков" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="logOut" layoutY="170.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Log Out" textAlignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="exit" layoutY="209.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Выход" textAlignment="CENTER">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </AnchorPane>
+      <AnchorPane layoutX="108.0" layoutY="27.0" prefHeight="373.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <AnchorPane fx:id="pnl_green" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7FFF00;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_coral" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00FFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_yellow" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFD700;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="pnl_orange" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FF7F50;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tableStudents" layoutX="10.0" layoutY="10.0" prefHeight="275.0" prefWidth="570.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columns>
+                        <TableColumn fx:id="userColumn" prefWidth="110.0" text="Пользователь" />
+                        <TableColumn fx:id="passColumn" prefWidth="110.0" text="Пароль" />
+                        <TableColumn fx:id="nameColumn" prefWidth="110.0" text="Имя" />
+                        <TableColumn fx:id="surnameColumn" prefWidth="126.0" text="Фамилия" />
+                        <TableColumn fx:id="middlenameColumn" prefWidth="111.0" text="Отчество" />
+                     </columns></TableView>
+                  <TextField fx:id="userField" layoutX="10.0" layoutY="303.0" prefHeight="25.0" prefWidth="110.0" />
+                  <TextField fx:id="passField" layoutX="127.0" layoutY="303.0" prefWidth="110.0" />
+                  <TextField fx:id="nameField" layoutX="243.0" layoutY="303.0" prefWidth="110.0" />
+                  <TextField fx:id="surnameField" layoutX="359.0" layoutY="303.0" prefWidth="110.0" />
+                  <TextField fx:id="middlenameField" layoutX="475.0" layoutY="303.0" prefWidth="110.0" />
+                  <Button fx:id="addStudent" layoutX="10.0" layoutY="337.0" mnemonicParsing="false" onAction="#addStudentAction" text="Добавить" />
+                  <Button layoutX="88.0" layoutY="337.0" mnemonicParsing="false" text="Удалить" />
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="-2.0" prefHeight="24.0" prefWidth="625.0">
+         <children>
+            <Button layoutX="8.0" layoutY="3.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="94.0" text="report a bug" />
+            <Label layoutX="288.0" layoutY="5.0" prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
+            <Label fx:id="currentUser" layoutX="190.0" layoutY="5.0" prefHeight="17.0" prefWidth="88.0" text="Role:" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

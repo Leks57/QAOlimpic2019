@@ -2,12 +2,19 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -41,20 +48,17 @@ public class LoginController {
 
     @FXML
     private void handleReportBug(ActionEvent event) {
+
         final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(Main.getPrimaryStage());
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Describe the bug:"));
-        TextArea textArea = new TextArea();
-        textArea.setPrefSize(150, 150);
-        Button createReport = new Button("Create report");
-        Button cancelReport = new Button("Cancel");
-        dialogVbox.getChildren().add(textArea);
-        dialogVbox.getChildren().add(createReport);
-        dialogVbox.getChildren().add(cancelReport);
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
-        dialog.setScene(dialogScene);
+        Parent pane = null;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("BugReport.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(pane);
+
+        dialog.setScene(scene);
         dialog.show();
     }
 }

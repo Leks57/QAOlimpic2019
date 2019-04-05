@@ -27,7 +27,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="243.0" prefHeight="55.0" prefWidth="391.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#createReport" prefHeight="30.0" prefWidth="116.0" text="Create report" />
+            <Button fx:id="createReport" alignment="CENTER" mnemonicParsing="false" onAction="#createReport" prefHeight="30.0" prefWidth="116.0" text="Create report" />
             <Region prefHeight="45.0" prefWidth="90.0" />
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="116.0" text="Cancel" />
          </children>

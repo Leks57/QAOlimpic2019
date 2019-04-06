@@ -4,14 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AdminController {
 
@@ -35,6 +36,8 @@ public class AdminController {
     @FXML
     private TableColumn<Student, String> middlenameColumn;
 
+    @FXML
+    Button save;
 
 
     @FXML
@@ -86,33 +89,38 @@ public class AdminController {
         } else {
             Student student = new Student(userField.getText(), passField.getText(), surnameField.getText(),
                     nameField.getText(), middlenameField.getText());
-            Group.getInstance().getStudents().add(student);
+            //Group.getInstance().getStudents().add(student);
+            Group.getInstance().getUsers().add(student);
             usersData.add(student);
         }
     }
 
     @FXML
     private void handleReportBug(ActionEvent event) {
+
         final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(Main.getPrimaryStage());
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Describe the bug:"));
-        TextArea textArea = new TextArea();
-        textArea.setPrefSize(150, 150);
-        Button createReport = new Button("Create report");
-        Button cancelReport = new Button("Cancel");
-        dialogVbox.getChildren().add(textArea);
-        dialogVbox.getChildren().add(createReport);
-        dialogVbox.getChildren().add(cancelReport);
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
-        dialog.setScene(dialogScene);
+        Parent pane = null;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("BugReport.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(pane);
+        dialog.setScene(scene);
+        dialog.setResizable(false);
         dialog.show();
     }
 
+    @FXML
+    private void saveButtonAction(ActionEvent event) {
+        CSVDataParser.exportStudentsToCSV("users.csv");
+    }
+
     private void initData() {
-        for (Student student : Group.getInstance().getStudents()) {
-            usersData.add(student);
+        for (User user : Group.getInstance().getUsers()) {
+            if (user.isStudentType()) {
+                usersData.add((Student)user);
+            }
         }
     }
 }

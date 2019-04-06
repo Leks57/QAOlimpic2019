@@ -21,17 +21,17 @@ public class Group {
         return localInstance;
     }
 
-    public void addStudent(Student student) {
-        getInstance().getStudents().add(student);
-    }
+//    public void addStudent(Student student) {
+//        getInstance().getStudents().add(student);
+//    }
 
-    public List<Student> getStudents() {
-        return this.students;
-    }
+//    public List<Student> getStudents() {
+//        return this.students;
+//    }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
 
     public List<Mark> getMarks() {
         return marks;

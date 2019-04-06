@@ -30,10 +30,12 @@ public class CSVDataParser {
                 Group.getInstance().setMarks(marks);
 
                 //Fill data of each student object with his marks
-                for (Student student : Group.getInstance().getStudents()) {
-                    for (Mark mark : Group.getInstance().getMarks()) {
-                        if (student.getFullName().equals(mark.getStudentName())) {
-                            student.getMarks().put(mark.getDate(), mark.getValue().toString());
+                for (User user : Group.getInstance().getUsers()) {
+                    if (user.isStudentType()) {
+                        for (Mark mark : Group.getInstance().getMarks()) {
+                            if (((Student)user).getFullName().equals(mark.getStudentName())) {
+                                ((Student)user).getMarks().put(mark.getDate(), mark.getValue().toString());
+                            }
                         }
                     }
                 }
@@ -58,14 +60,14 @@ public class CSVDataParser {
                 reader = new CSVReader(new FileReader(csvFile));
                 String[] line;
                 List<User> studentsAsUsers = new ArrayList<User>();
-                List<Student> students = new ArrayList<Student>();
+                //List<Student> students = new ArrayList<Student>();
                 while ((line = reader.readNext()) != null) {
                     Student student = new Student(line[0], line[1], line[2], line[3], line[4]);
                     studentsAsUsers.add(student);
-                    students.add(student);
+                    //students.add(student);
                 }
                 Group.getInstance().setUsers(studentsAsUsers);
-                Group.getInstance().setStudents(students);
+                //Group.getInstance().setStudents(students);
             } catch (IOException e) {
                 e.printStackTrace();
             }

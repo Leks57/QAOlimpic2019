@@ -24,7 +24,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class TeacherController {
+public class StudentController {
 
     public static List<String> columnNames = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class TeacherController {
 
     @FXML
     private void initialize() {
-        currentUser.setText("Role: teacher");
+        currentUser.setText("Role: " + Group.getInstance().getCurrentUser().getUserName());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DecimalFormat f = new DecimalFormat("##.##");
@@ -48,9 +48,9 @@ public class TeacherController {
 
         List<TableColumn<Map, String>> listOfEditableColumns = new ArrayList<>();
 
-        TableColumn<Map, String> firstMonth = new TableColumn<>("March");
-        TableColumn<Map, String> secondMonth = new TableColumn<>("April");
-        TableColumn<Map, String> thirdMonth = new TableColumn<>("May");
+        TableColumn<Map, String> firstMonth = new TableColumn<>("Март");
+        TableColumn<Map, String> secondMonth = new TableColumn<>("Апрель");
+        TableColumn<Map, String> thirdMonth = new TableColumn<>("Май");
 
         String currentDateStr = "03.04.2019";
         LocalDate currentDate = LocalDate.parse(currentDateStr, formatter);
@@ -73,11 +73,11 @@ public class TeacherController {
                 listOfEditableColumns.add(tableColumn);
             }
         }
-        TableColumn<Map, String> nameColumn = new TableColumn<>("name");
+        TableColumn<Map, String> nameColumn = new TableColumn<>("Студент");
         nameColumn.setMinWidth(130);
         nameColumn.setCellValueFactory(new MapValueFactory("name"));
 
-        TableColumn<Map, String> averageColumn = new TableColumn<>("average");
+        TableColumn<Map, String> averageColumn = new TableColumn<>("Средняя оценка");
         averageColumn.setMinWidth(130);
         averageColumn.setCellValueFactory(new MapValueFactory("average"));
 
@@ -122,11 +122,11 @@ public class TeacherController {
                 if (day.length() == 1) {day = "0".concat(day);}
                 String month = ((TableColumn.CellEditEvent<Map, String>) t).getTableColumn().getParentColumn().getText();
                 String monthValue = null;
-                if (month.equals("March")) {
+                if (month.equals("Март")) {
                     monthValue = "03";
-                } else if (month.equals("April")) {
+                } else if (month.equals("Апрель")) {
                     monthValue = "04";
-                } else if (month.equals("May")) {
+                } else if (month.equals("Май")) {
                     monthValue = "05";
                 }
                 String date = day.concat(".").concat(monthValue).concat(".2019");
@@ -195,14 +195,12 @@ public class TeacherController {
 
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
-        for (User user : Group.getInstance().getUsers()) {
-            if (user.isStudentType()) {
-                Map<String, String> dataRow = new HashMap<>(((Student)user).getMarks());
-                dataRow.put("name", ((Student)user).getFullName());
-                dataRow.put("average", String.valueOf(((Student)user).getAverageMark()));
-                allData.add(dataRow);
-            }
-        }
+        Student student = (Student) Group.getInstance().getCurrentUser();
+            Map<String, String> dataRow = new HashMap<>(student.getMarks());
+            dataRow.put("name", student.getFullName());
+            dataRow.put("average", String.valueOf(student.getAverageMark()));
+            allData.add(dataRow);
+
         return allData;
     }
 }

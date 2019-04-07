@@ -11,13 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -28,9 +27,13 @@ public class StudentController {
 
     public static List<String> columnNames = new ArrayList<>();
 
-
     @FXML
     private TableView tableMarks;
+
+    @FXML
+    private TableView tableMyMarks;
+
+    List<TableColumn<Map, String>> listOfColumns = new ArrayList<>();
 
     @FXML
     private void initialize() {
@@ -44,7 +47,6 @@ public class StudentController {
                 "01.05.2019", "02.05.2019", "03.05.2019", "04.05.2019", "05.05.2019", "06.05.2019", "07.05.2019", "08.05.2019", "09.05.2019", "10.05.2019"};
         columnNames = Arrays.asList(arrayOfDays);
 
-        List<TableColumn<Map, String>> listOfColumns = new ArrayList<>();
 
         List<TableColumn<Map, String>> listOfEditableColumns = new ArrayList<>();
 
@@ -86,11 +88,6 @@ public class StudentController {
         listOfColumns.add(secondMonth);
         listOfColumns.add(thirdMonth);
         listOfColumns.add(averageColumn);
-
-        tableMarks.setItems(generateDataInMap());
-
-        tableMarks.setEditable(true);
-        tableMarks.getSelectionModel().setCellSelectionEnabled(true);
 
         Callback<TableColumn<Map, String>, TableCell<Map, String>>
                 cellFactoryForMap = new Callback<TableColumn<Map, String>,
@@ -137,8 +134,14 @@ public class StudentController {
                         if (((Student)user).getFullName().equals(studentName)) {
                             if ("".equals(((TableColumn.CellEditEvent<Map, String>) t).getNewValue())) {
                                 ((Student)user).getMarks().remove(date);
+                                for (Mark mark : Group.getInstance().getMarks()) {
+                                    if (studentName.equals(mark.getStudentName()) && date.equals(mark.getDate())) {
+                                        Group.getInstance().getMarks().remove(mark);
+                                    }
+                                }
                             } else {
                                 ((Student)user).getMarks().put(date, ((TableColumn.CellEditEvent<Map, String>) t).getNewValue());
+                                Group.getInstance().getMarks().add(new Mark(Integer.parseInt(((TableColumn.CellEditEvent<Map, String>) t).getNewValue()), date, studentName));
                             }
                             Double newAvg = ((Student)user).getAverageMark();
                             map.put("average", f.format(newAvg));
@@ -150,14 +153,13 @@ public class StudentController {
             });
         }
 
-        tableMarks.getColumns().setAll(listOfColumns);
     }
 
     @FXML
-    private AnchorPane pnl_orange, pnl_coral, pnl_yellow, pnl_green;
+    private AnchorPane pnl_journal, pnl_myMarks;
 
     @FXML
-    private Button btn_journal, btn_docs, btn_classes, btn_planing, logOut, exit;
+    private Button btn_journal, btn_myMarks, logOut;
 
     @FXML
     private Label currentUser;
@@ -165,13 +167,21 @@ public class StudentController {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btn_journal) {
-            pnl_orange.toFront();
-        } else if (event.getSource() == btn_docs) {
-            pnl_coral.toFront();
-        } else if (event.getSource() == btn_classes) {
-            pnl_yellow.toFront();
-        } else if (event.getSource() == btn_planing) {
-            pnl_green.toFront();
+            tableMarks.setItems(generateDataInMap());
+            tableMarks.setEditable(true);
+            tableMarks.getSelectionModel().setCellSelectionEnabled(true);
+            tableMarks.getColumns().setAll(listOfColumns);
+
+            pnl_journal.toFront();
+
+        } else if (event.getSource() == btn_myMarks) {
+            tableMyMarks.setItems(generateDataInMapForCurrentStudent());
+            tableMyMarks.setEditable(true);
+            tableMyMarks.getSelectionModel().setCellSelectionEnabled(true);
+            tableMyMarks.getColumns().setAll(listOfColumns);
+
+            pnl_myMarks.toFront();
+
         } else if (event.getSource() == logOut) {
             Main.changeScene(getClass().getResource("Login.fxml"));
         }
@@ -195,6 +205,19 @@ public class StudentController {
 
     private ObservableList<Map> generateDataInMap() {
         ObservableList<Map> allData = FXCollections.observableArrayList();
+        for (User user : Group.getInstance().getUsers()) {
+            if (user.isStudentType()) {
+                Map<String, String> dataRow = new HashMap<>(((Student)user).getMarks());
+                dataRow.put("name", ((Student)user).getFullName());
+                dataRow.put("average", String.valueOf(((Student)user).getAverageMark()));
+                allData.add(dataRow);
+            }
+        }
+        return allData;
+    }
+
+    private ObservableList<Map> generateDataInMapForCurrentStudent() {
+        ObservableList<Map> allData = FXCollections.observableArrayList();
         Student student = (Student) Group.getInstance().getCurrentUser();
             Map<String, String> dataRow = new HashMap<>(student.getMarks());
             dataRow.put("name", student.getFullName());
@@ -202,5 +225,31 @@ public class StudentController {
             allData.add(dataRow);
 
         return allData;
+    }
+
+    @FXML
+    public void handleExportStudentsMarks(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(Main.getPrimaryStage());
+
+        if (file != null) {
+            CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(), file.getPath());
+        }
+    }
+
+    @FXML
+    private void handleShowInfo(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Как отправить отчет об ошибке");
+        alert.setHeaderText(null);
+        alert.setContentText("1. Нажмите кнопку \"Отчет об ошибке\" в левом верхнем углу приложения\n" +
+                "2. Опишите подробно обнаруженную ошибку\n" +
+                "3. Для прикрепления скриншота поставьте галочку \"Приложить скриншот\"\n" +
+                "4. Нажмите кнопку \"Отправить отчет\"");
+        alert.showAndWait();
     }
 }

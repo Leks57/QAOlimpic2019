@@ -11,13 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -48,9 +47,9 @@ public class TeacherController {
 
         List<TableColumn<Map, String>> listOfEditableColumns = new ArrayList<>();
 
-        TableColumn<Map, String> firstMonth = new TableColumn<>("March");
-        TableColumn<Map, String> secondMonth = new TableColumn<>("April");
-        TableColumn<Map, String> thirdMonth = new TableColumn<>("May");
+        TableColumn<Map, String> firstMonth = new TableColumn<>("Март");
+        TableColumn<Map, String> secondMonth = new TableColumn<>("Апрель");
+        TableColumn<Map, String> thirdMonth = new TableColumn<>("Май");
 
         String currentDateStr = "03.04.2019";
         LocalDate currentDate = LocalDate.parse(currentDateStr, formatter);
@@ -73,11 +72,11 @@ public class TeacherController {
                 listOfEditableColumns.add(tableColumn);
             }
         }
-        TableColumn<Map, String> nameColumn = new TableColumn<>("name");
+        TableColumn<Map, String> nameColumn = new TableColumn<>("Студент");
         nameColumn.setMinWidth(130);
         nameColumn.setCellValueFactory(new MapValueFactory("name"));
 
-        TableColumn<Map, String> averageColumn = new TableColumn<>("average");
+        TableColumn<Map, String> averageColumn = new TableColumn<>("Средняя оценка");
         averageColumn.setMinWidth(130);
         averageColumn.setCellValueFactory(new MapValueFactory("average"));
 
@@ -122,11 +121,11 @@ public class TeacherController {
                 if (day.length() == 1) {day = "0".concat(day);}
                 String month = ((TableColumn.CellEditEvent<Map, String>) t).getTableColumn().getParentColumn().getText();
                 String monthValue = null;
-                if (month.equals("March")) {
+                if (month.equals("Март")) {
                     monthValue = "03";
-                } else if (month.equals("April")) {
+                } else if (month.equals("Апрель")) {
                     monthValue = "04";
-                } else if (month.equals("May")) {
+                } else if (month.equals("Май")) {
                     monthValue = "05";
                 }
                 String date = day.concat(".").concat(monthValue).concat(".2019");
@@ -137,8 +136,14 @@ public class TeacherController {
                         if (((Student)user).getFullName().equals(studentName)) {
                             if ("".equals(((TableColumn.CellEditEvent<Map, String>) t).getNewValue())) {
                                 ((Student)user).getMarks().remove(date);
+                                for (Mark mark : Group.getInstance().getMarks()) {
+                                    if (studentName.equals(mark.getStudentName()) && date.equals(mark.getDate())) {
+                                        Group.getInstance().getMarks().remove(mark);
+                                    }
+                                }
                             } else {
                                 ((Student)user).getMarks().put(date, ((TableColumn.CellEditEvent<Map, String>) t).getNewValue());
+                                Group.getInstance().getMarks().add(new Mark(Integer.parseInt(((TableColumn.CellEditEvent<Map, String>) t).getNewValue()), date, studentName));
                             }
                             Double newAvg = ((Student)user).getAverageMark();
                             map.put("average", f.format(newAvg));
@@ -154,10 +159,10 @@ public class TeacherController {
     }
 
     @FXML
-    private AnchorPane pnl_orange, pnl_coral, pnl_yellow, pnl_green;
+    private AnchorPane pnl_journal;
 
     @FXML
-    private Button btn_journal, btn_docs, btn_classes, btn_planing, logOut, exit;
+    private Button btn_journal, logOut, exit;
 
     @FXML
     private Label currentUser;
@@ -165,13 +170,7 @@ public class TeacherController {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btn_journal) {
-            pnl_orange.toFront();
-        } else if (event.getSource() == btn_docs) {
-            pnl_coral.toFront();
-        } else if (event.getSource() == btn_classes) {
-            pnl_yellow.toFront();
-        } else if (event.getSource() == btn_planing) {
-            pnl_green.toFront();
+            pnl_journal.toFront();
         } else if (event.getSource() == logOut) {
             Main.changeScene(getClass().getResource("Login.fxml"));
         }
@@ -204,5 +203,36 @@ public class TeacherController {
             }
         }
         return allData;
+    }
+
+    @FXML
+    public void handleExportStudentsMarks(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(Main.getPrimaryStage());
+
+        if (file != null) {
+            CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(), file.getPath());
+        }
+    }
+
+    @FXML
+    public void saveButtonAction(ActionEvent event) {
+        CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(), Main.getMarksPath());
+    }
+
+    @FXML
+    private void handleShowInfo(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Как отправить отчет об ошибке");
+        alert.setHeaderText(null);
+        alert.setContentText("1. Нажмите кнопку \"Отчет об ошибке\" в левом верхнем углу приложения\n" +
+                "2. Опишите подробно обнаруженную ошибку\n" +
+                "3. Для прикрепления скриншота поставьте галочку \"Приложить скриншот\"\n" +
+                "4. Нажмите кнопку \"Отправить отчет\"");
+        alert.showAndWait();
     }
 }

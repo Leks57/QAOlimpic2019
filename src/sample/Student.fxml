@@ -11,38 +11,53 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StudentController">
    <children>
-      <AnchorPane layoutX="-2.0" layoutY="27.0" maxWidth="110.0" prefHeight="373.0" prefWidth="110.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="28.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btn_journal" layoutX="1.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Классный&#10;журнал" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_docs" layoutX="1.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Документы" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_classes" layoutX="1.0" layoutY="53.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Классы и&#10;предметы" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button fx:id="btn_planing" layoutX="1.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Планирование&#10;уроков" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button fx:id="logOut" layoutY="170.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Log Out" textAlignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Button fx:id="exit" layoutY="209.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Выход" textAlignment="CENTER">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
+            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Region prefHeight="33.0" prefWidth="11.0" />
+                  <Button fx:id="reportBug2" mnemonicParsing="false" onAction="#handleReportBug" prefHeight="25.0" prefWidth="117.0" text="Отчет об ошибке" />
+                  <Region prefHeight="33.0" prefWidth="11.0" />
+                  <Button mnemonicParsing="false" onAction="#handleShowInfo" prefHeight="25.0" prefWidth="81.0" text="Справка" />
+                  <Region prefHeight="33.0" prefWidth="67.0" />
+                  <Label fx:id="currentUser" prefHeight="17.0" prefWidth="83.0" text="Role:" />
+                  <Region prefHeight="28.0" prefWidth="17.0" />
+                  <Label prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="8.0" layoutY="37.0" maxWidth="110.0" prefHeight="373.0" prefWidth="110.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <VBox prefHeight="370.0" prefWidth="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="btn_journal" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Классный&#10;журнал" textAlignment="CENTER">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_myMarks" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Мои оценки" textAlignment="CENTER">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#handleExportStudentsMarks" prefHeight="39.0" prefWidth="110.0" text="Экспорт в CSV" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logOut" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Log Out" textAlignment="CENTER">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="exit" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Выход" textAlignment="CENTER">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -56,29 +71,15 @@
             <DropShadow />
          </effect>
          <children>
-            <AnchorPane fx:id="pnl_green" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_coral" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_yellow" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_orange" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="pnl_journal" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TableView fx:id="tableMarks" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="570.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children></AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="28.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="pnl_myMarks" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Region prefHeight="33.0" prefWidth="11.0" />
-                  <Button fx:id="reportBug2" mnemonicParsing="false" onAction="#handleReportBug" prefHeight="25.0" prefWidth="117.0" text="Отчет об ошибке" />
-                  <Region prefHeight="33.0" prefWidth="11.0" />
-                  <Button fx:id="reportBug1" mnemonicParsing="false" onAction="#handleReportBug" prefHeight="25.0" prefWidth="81.0" text="Справка" />
-                  <Region prefHeight="33.0" prefWidth="67.0" />
-                  <Label fx:id="currentUser" prefHeight="17.0" prefWidth="83.0" text="Role:" />
-                  <Region prefHeight="28.0" prefWidth="17.0" />
-                  <Label prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
+                  <TableView fx:id="tableMyMarks" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="570.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
-            </HBox>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

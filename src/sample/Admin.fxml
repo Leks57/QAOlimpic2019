@@ -15,27 +15,17 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="btn_docs" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Документы" textAlignment="CENTER">
+                  <Button fx:id="btn_users" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Пользователи" textAlignment="CENTER">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_classes" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Классы и&#10;предметы" textAlignment="CENTER">
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="39.0" prefWidth="110.0" text="Сохранить изменения" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_planing" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Планирование&#10;уроков" textAlignment="CENTER">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btn_journal" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="110.0" text="Пользователи" textAlignment="CENTER">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="save" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="39.0" prefWidth="110.0" text="Сохранить" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#handleExportStudents" prefHeight="39.0" prefWidth="110.0" text="Экспорт в CSV" textAlignment="CENTER">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -65,10 +55,7 @@
             <DropShadow />
          </effect>
          <children>
-            <AnchorPane fx:id="pnl_green" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_coral" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_yellow" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <AnchorPane fx:id="pnl_orange" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="pnl_users" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="373.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -159,11 +146,11 @@
                   <Region prefHeight="33.0" prefWidth="11.0" />
                   <Button fx:id="reportBug2" mnemonicParsing="false" onAction="#handleReportBug" prefHeight="25.0" prefWidth="117.0" text="Отчет об ошибке" />
                   <Region prefHeight="33.0" prefWidth="11.0" />
-                  <Button fx:id="reportBug1" mnemonicParsing="false" onAction="#handleReportBug" prefHeight="25.0" prefWidth="81.0" text="Справка" />
+                  <Button mnemonicParsing="false" onAction="#handleShowInfo" prefHeight="25.0" prefWidth="81.0" text="Справка" />
                   <Region prefHeight="33.0" prefWidth="67.0" />
                   <Label fx:id="currentUser" prefHeight="17.0" prefWidth="83.0" text="Role:" />
                   <Region prefHeight="28.0" prefWidth="17.0" />
-                  <Label prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
+                  <Label fx:id="participantName" prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
                </children>
             </HBox>
          </children>

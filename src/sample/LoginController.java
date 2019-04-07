@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -60,5 +61,18 @@ public class LoginController {
         dialog.setScene(scene);
         dialog.setResizable(false);
         dialog.show();
+    }
+
+    @FXML
+    private void handleShowInfo(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Как отправить отчет об ошибке");
+        alert.setHeaderText(null);
+        alert.setContentText("1. Нажмите кнопку \"Отчет об ошибке\" в левом верхнем углу приложения\n" +
+                "2. Опишите подробно обнаруженную ошибку\n" +
+                "3. Для прикрепления скриншота поставьте галочку \"Приложить скриншот\"\n" +
+                "4. Нажмите кнопку \"Отправить отчет\"");
+        alert.showAndWait();
     }
 }

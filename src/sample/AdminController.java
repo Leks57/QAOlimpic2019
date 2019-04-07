@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class AdminController {
@@ -39,10 +41,13 @@ public class AdminController {
     @FXML
     Button save;
 
+    @FXML
+    private Label currentUser, participantName;
 
     @FXML
     private void initialize() {
         currentUser.setText("Role: admin");
+        participantName.setText(participantName.getText() + " " + Group.getInstance().getParticipantName());
 
         initData();
         userColumn.setCellValueFactory(new PropertyValueFactory<Student, String>("userName"));
@@ -55,28 +60,17 @@ public class AdminController {
     }
 //
     @FXML
-    private AnchorPane pnl_orange, pnl_coral, pnl_yellow, pnl_green;
+    private AnchorPane pnl_users;
     @FXML
-    private Button btn_journal, btn_docs, btn_classes, btn_planing, logOut, reportBug, exit;
+    private Button btn_users, logOut;
 
-    @FXML
-    private Button addStudent;
     @FXML
     private TextField userField, passField, nameField, surnameField, middlenameField;
 
     @FXML
-    private Label currentUser;
-
-    @FXML
     private void handleButtonAction(ActionEvent event) {
-        if (event.getSource() == btn_journal) {
-            pnl_orange.toFront();
-        } else if (event.getSource() == btn_docs) {
-            pnl_coral.toFront();
-        } else if (event.getSource() == btn_classes) {
-            pnl_yellow.toFront();
-        } else if (event.getSource() == btn_planing) {
-            pnl_green.toFront();
+        if (event.getSource() == btn_users) {
+            pnl_users.toFront();
         } else if (event.getSource() == logOut) {
             Main.changeScene(getClass().getResource("Login.fxml"));
         }
@@ -89,7 +83,6 @@ public class AdminController {
         } else {
             Student student = new Student(userField.getText(), passField.getText(), surnameField.getText(),
                     nameField.getText(), middlenameField.getText());
-            //Group.getInstance().getStudents().add(student);
             Group.getInstance().getUsers().add(student);
             usersData.add(student);
         }
@@ -122,5 +115,32 @@ public class AdminController {
                 usersData.add((Student)user);
             }
         }
+    }
+
+    @FXML
+    private void handleExportStudents(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showSaveDialog(Main.getPrimaryStage());
+
+        if (file != null) {
+            CSVDataParser.exportStudentsToCSV(file.getPath());
+        }
+    }
+
+    @FXML
+    private void handleShowInfo(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Как отправить отчет об ошибке");
+        alert.setHeaderText(null);
+        alert.setContentText("1. Нажмите кнопку \"Отчет об ошибке\" в левом верхнем углу приложения\n" +
+                "2. Опишите подробно обнаруженную ошибку\n" +
+                "3. Для прикрепления скриншота поставьте галочку \"Приложить скриншот\"\n" +
+                "4. Нажмите кнопку \"Отправить отчет\"");
+        alert.showAndWait();
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="369.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ParticipantLoginController">
+   <children>
+      <HBox alignment="CENTER" layoutX="-1.0" layoutY="-2.0" prefHeight="92.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="507.0" text="QA Олимпиада 2019 &quot;Электронный дневник&quot;" textAlignment="RIGHT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="95.0" prefHeight="175.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="145.0" prefWidth="538.0">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="538.0">
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="182.0" text="ФИО участника" textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="fullName" prefHeight="33.0" prefWidth="350.0" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorFullName" prefHeight="17.0" prefWidth="119.0" textFill="RED" />
+                  <Region prefHeight="21.0" prefWidth="540.0" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="36.0" prefWidth="538.0">
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="180.0" text="Учебное заведение" textAlignment="RIGHT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="university" prefHeight="33.0" prefWidth="350.0" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="errorUniversity" prefHeight="17.0" prefWidth="119.0" textFill="RED" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="277.0" prefHeight="50.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btn_login" mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="117.0" text="Войти">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <Label layoutX="548.0" layoutY="328.0" prefHeight="33.0" prefWidth="139.0" text="Netcracker 2019" textAlignment="RIGHT">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>

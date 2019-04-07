@@ -11,6 +11,9 @@ import java.net.URL;
 
 public class Main extends Application {
 
+    private static String marksPath = "marks.csv";
+    private static String usersPath = "users.csv";
+
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -25,29 +28,24 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
 
-        CSVDataParser.importStudentsFromCSV("users.csv");
+        CSVDataParser.importStudentsFromCSV(getUsersPath());
         User admin = new Admin();
         Group.getInstance().getUsers().add(admin);
         User teacher = new Teacher();
         Group.getInstance().getUsers().add(teacher);
 
         //Fill data of each student object with his marks
-        CSVDataParser.importMarksFromCSV("marks.csv");
+        CSVDataParser.importMarksFromCSV(getMarksPath());
 
-        Parent loginParent = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent loginParent = FXMLLoader.load(getClass().getResource("ParticipantLogin.fxml"));
         Scene loginScene = new Scene(loginParent);
 
         primaryStage.setTitle("QA Olimpic 2019");
 
+        primaryStage.setResizable(false);
         primaryStage.setScene(loginScene);
         primaryStage.show();
 
-
-//        Group.getInstance().printUsers();
-//        Group.getInstance().printMarks();
-//        TeacherController.getMarksData().addAll(Group.getInstance().getMarks());
-//        CSVDataParser.exportMarksToCSV(Group.getInstance().getMarks(),"marks.csv");
-//        CSVDataParser.exportStudentsToCSV("users.csv");
     }
 
     public static void changeScene(URL url) {
@@ -58,10 +56,19 @@ public class Main extends Application {
             e.printStackTrace();
         }
         Scene scene = new Scene(pane);
+        primaryStage.setResizable(true);
         primaryStage.setScene(scene);
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static String getMarksPath() {
+        return marksPath;
+    }
+
+    public static String getUsersPath() {
+        return usersPath;
     }
 }

@@ -8,6 +8,9 @@ public class Group {
     private List<Mark> marks;
     private User currentUser;
 
+    private String participantName;
+    private String participantUniversity;
+
     public static Group getInstance() {
         Group localInstance = instance;
         if (localInstance == null) {
@@ -21,17 +24,6 @@ public class Group {
         return localInstance;
     }
 
-//    public void addStudent(Student student) {
-//        getInstance().getStudents().add(student);
-//    }
-
-//    public List<Student> getStudents() {
-//        return this.students;
-//    }
-
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
 
     public List<Mark> getMarks() {
         return marks;
@@ -68,5 +60,21 @@ public class Group {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public String getParticipantName() {
+        return participantName;
+    }
+
+    public void setParticipantName(String participantName) {
+        this.participantName = participantName;
+    }
+
+    public String getParticipantUniversity() {
+        return participantUniversity;
+    }
+
+    public void setParticipantUniversity(String participantUniversity) {
+        this.participantUniversity = participantUniversity;
     }
 }

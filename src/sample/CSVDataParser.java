@@ -3,9 +3,7 @@ package sample;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,9 +38,6 @@ public class CSVDataParser {
                     }
                 }
 
-//                for (Student student : Group.getInstance().getStudents()) {
-//                    student.printMarks();
-//                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -60,14 +55,11 @@ public class CSVDataParser {
                 reader = new CSVReader(new FileReader(csvFile));
                 String[] line;
                 List<User> studentsAsUsers = new ArrayList<User>();
-                //List<Student> students = new ArrayList<Student>();
                 while ((line = reader.readNext()) != null) {
                     Student student = new Student(line[0], line[1], line[2], line[3], line[4]);
                     studentsAsUsers.add(student);
-                    //students.add(student);
                 }
                 Group.getInstance().setUsers(studentsAsUsers);
-                //Group.getInstance().setStudents(students);
             } catch (IOException e) {
                 e.printStackTrace();
             }

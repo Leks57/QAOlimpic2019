@@ -22,7 +22,12 @@ public class LoginController {
     private PasswordField password;
 
     @FXML
-    private Label output;
+    private Label participantName, output;
+
+    @FXML
+    private void initialize() {
+        participantName.setText(participantName.getText() + " " + Group.getInstance().getParticipantName());
+    }
 
     @FXML
     public void login(javafx.event.ActionEvent actionEvent) {

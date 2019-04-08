@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StudentController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="28.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,7 +18,7 @@
                   <Region prefHeight="33.0" prefWidth="67.0" />
                   <Label fx:id="currentUser" prefHeight="17.0" prefWidth="83.0" text="Role:" />
                   <Region prefHeight="28.0" prefWidth="17.0" />
-                  <Label prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
+                  <Label fx:id="participantName" prefHeight="17.0" prefWidth="329.0" text="Logged as:" />
                </children>
             </HBox>
          </children>

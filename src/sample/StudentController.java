@@ -38,14 +38,13 @@ public class StudentController {
     @FXML
     private void initialize() {
         currentUser.setText("Role: " + Group.getInstance().getCurrentUser().getUserName());
+        participantName.setText(participantName.getText() + " " + Group.getInstance().getParticipantName());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DecimalFormat f = new DecimalFormat("##.##");
 
-        String[] arrayOfDays = new String[] {"01.03.2019", "02.03.2019", "03.03.2019", "04.03.2019", "05.03.2019", "06.03.2019", "07.03.2019", "08.03.2019", "09.03.2019", "10.03.2019",
-                "01.04.2019", "02.04.2019", "03.04.2019", "04.04.2019", "05.04.2019", "06.04.2019", "07.04.2019", "08.04.2019", "09.04.2019", "10.04.2019",
-                "01.05.2019", "02.05.2019", "03.05.2019", "04.05.2019", "05.05.2019", "06.05.2019", "07.05.2019", "08.05.2019", "09.05.2019", "10.05.2019"};
-        columnNames = Arrays.asList(arrayOfDays);
+        //get dates in months
+        columnNames = Arrays.asList(Group.getInstance().getArrayOfDays());
 
 
         List<TableColumn<Map, String>> listOfEditableColumns = new ArrayList<>();
@@ -54,8 +53,7 @@ public class StudentController {
         TableColumn<Map, String> secondMonth = new TableColumn<>("Апрель");
         TableColumn<Map, String> thirdMonth = new TableColumn<>("Май");
 
-        String currentDateStr = "03.04.2019";
-        LocalDate currentDate = LocalDate.parse(currentDateStr, formatter);
+        LocalDate currentDate = LocalDate.now(); //LocalDate.parse(currentDateStr, formatter);
 
         for (String column:columnNames) {
             LocalDate date = LocalDate.parse(column, formatter);
@@ -134,9 +132,10 @@ public class StudentController {
                         if (((Student)user).getFullName().equals(studentName)) {
                             if ("".equals(((TableColumn.CellEditEvent<Map, String>) t).getNewValue())) {
                                 ((Student)user).getMarks().remove(date);
-                                for (Mark mark : Group.getInstance().getMarks()) {
+                                for (Iterator<Mark> it = Group.getInstance().getMarks().iterator(); it.hasNext(); ) {
+                                    Mark mark = it.next();
                                     if (studentName.equals(mark.getStudentName()) && date.equals(mark.getDate())) {
-                                        Group.getInstance().getMarks().remove(mark);
+                                        it.remove();
                                     }
                                 }
                             } else {
@@ -162,14 +161,14 @@ public class StudentController {
     private Button btn_journal, btn_myMarks, logOut;
 
     @FXML
-    private Label currentUser;
+    private Label currentUser, participantName;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
         if (event.getSource() == btn_journal) {
             tableMarks.setItems(generateDataInMap());
-            tableMarks.setEditable(true);
-            tableMarks.getSelectionModel().setCellSelectionEnabled(true);
+            tableMarks.setEditable(false);
+            tableMarks.getSelectionModel().setCellSelectionEnabled(false);
             tableMarks.getColumns().setAll(listOfColumns);
 
             pnl_journal.toFront();

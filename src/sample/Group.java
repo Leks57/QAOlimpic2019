@@ -1,12 +1,19 @@
 package sample;
+
 import java.util.List;
 
 public class Group {
     private static volatile Group instance;
-    private List<Student> students;
     private List<User> users;
     private List<Mark> marks;
     private User currentUser;
+    private static String[] arrayOfDays = new String[]
+            {"01.03.2019", "04.03.2019", "07.03.2019", "13.03.2019", "16.03.2019",
+            "19.03.2019", "22.03.2019", "25.03.2019", "28.03.2019", "31.03.2019",
+            "02.04.2019", "05.04.2019", "08.04.2019", "12.04.2019", "15.04.2019",
+            "17.04.2019", "20.04.2019", "23.04.2019", "26.04.2019", "29.04.2019",
+            "06.05.2019", "08.05.2019", "13.05.2019", "15.05.2019", "17.05.2019",
+            "21.05.2019", "23.05.2019", "25.05.2019", "27.05.2019", "30.05.2019"};
 
     private String participantName;
     private String participantUniversity;
@@ -22,6 +29,10 @@ public class Group {
             }
         }
         return localInstance;
+    }
+
+    public static String[] getArrayOfDays() {
+        return arrayOfDays;
     }
 
 

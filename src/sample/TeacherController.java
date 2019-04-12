@@ -66,9 +66,7 @@ public class TeacherController {
             } else if (month == 5) {
                 thirdMonth.getColumns().add(tableColumn);
             }
-            if (date.compareTo(currentDate) <= 0) {
-                listOfEditableColumns.add(tableColumn);
-            }
+            listOfEditableColumns.add(tableColumn);
         }
         TableColumn<Map, String> nameColumn = new TableColumn<>("Студент");
         nameColumn.setMinWidth(130);

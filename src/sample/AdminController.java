@@ -85,6 +85,11 @@ public class AdminController {
                     nameField.getText(), middlenameField.getText());
             Group.getInstance().getUsers().add(student);
             usersData.add(student);
+            userField.setText("");
+            passField.setText("");
+            nameField.setText("");
+            surnameField.setText("");
+            middlenameField.setText("");
         }
     }
 
